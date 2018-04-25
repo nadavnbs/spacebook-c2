@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <title></title>
 </head>
 <body>
@@ -11,25 +11,36 @@
       <div class="page-header">
         <h1>Spacebook</h1>
       </div>
-
       <div class="posts">
       </div>
-
       <form>
         <h3>Add a New Post</h3>
-
         <div class="form-group">
           <input type="text" id="post-name" class="form-control" placeholder="Post Text">
         </div>
-
         <button class="btn btn-primary add-post" type="button">Post</button>
       </form>
     </div>
   </div>
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
   <script src="main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+  <script id="comments-template" type="text/x-handlebars-template">
+    <div class="post" data-id= {{id}} >
+     <a href="#" class="remove">remove</a> 
+     <a href="#" class="show-comments">comments</a> {{text}} 
+     <div class="comments-container" data-id= {{id}}>
+     <input type="text" class="comment-name">
+     <button class="btn btn-primary add-comment">Post Comment</button>
+     <div class="commentList" data-id= {{id}}>Comments here!
+       <ul class="list"> 
+         {{#each comments}}
+         <li>{{text}}</li>
+         {{/each}}
+       </ul>
+     </div>
+   </div>
+ </div>
+   </script>
 </body>
 </html>
