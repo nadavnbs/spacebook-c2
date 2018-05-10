@@ -1,13 +1,29 @@
-    /**
+   import postApi from './api.js'
+   
+   /**
      * @class Responsible for storing and manipulating Spacebook posts, in-memory
      */
 class PostsRepository {
     constructor() {
         this.posts = [];
+        this.postApi = postApi
+    }
+
+    async initData(){
+        console.log('shalom');
+        let answer = await postApi.fetch()
+        console.log(answer);
+        this.posts = answer;
+        return this.posts;
     }
 
     addPost(postText) {
         this.posts.push({ text: postText, comments: [] });
+        $.ajax({
+            method:"POST",
+            url:'/posts',
+            data:this.posts
+        })
     }
 
     removePost(index) {

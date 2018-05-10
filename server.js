@@ -16,12 +16,25 @@ app.use(express.static('node_modules'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
 // You will need to create 5 server routes
 // These will define your API:
 
 // 1) to handle getting all posts and their comments
+app.get('/posts',function(req,res){
+  Post.find().exec(function(err,posts){
+    if(err){
+      console.log(err)
+    }else{
+      console.log(posts)
+      res.send(posts)
+    }
+  })
+});
 // 2) to handle adding a post
+app.post('/posts',function(req,res){
+  console.log(req.body);
+  res.send("from server route")
+})
 // 3) to handle deleting a post
 // 4) to handle adding a comment to a post
 // 5) to handle deleting a comment from a post
